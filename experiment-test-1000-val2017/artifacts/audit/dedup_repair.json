@@ -1,0 +1,18 @@
+{
+  "rounds": [
+    {
+      "dropped": {
+        "186275": "exact copy (SHA-256) of a val/test image",
+        "463132": "near-duplicate (dHash <= 4) of a val/test image"
+      },
+      "added": [
+        149053,
+        474404
+      ]
+    }
+  ],
+  "all_dropped": [
+    186275,
+    463132
+  ]
+}
