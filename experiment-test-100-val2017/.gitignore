@@ -1,0 +1,51 @@
+# Python environments and cache files
+.venv/
+__pycache__/
+*.py[cod]
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+
+# Notebook execution byproducts
+.ipynb_checkpoints/
+executed_notebooks/
+
+# Downloaded datasets and generated image/model binaries
+data/raw/
+data/images/
+artifacts/images_rgb/
+artifacts/embeddings/
+experiments/*/images_rgb/
+experiments/*/embeddings/
+*.npy
+*.faiss
+*.index
+*.zip
+*.tar
+*.tar.gz
+*.jpg
+*.jpeg
+*.png
+
+# Keep evidence and publication figures eligible for version control.
+!artifacts/eda/*.png
+!reports/figures/*.png
+!reports/figures/latex-figures/*.png
+!reports/figures/latex-figures/*.jpg
+!experiments/*/results/*.png
+
+# Logs and LaTeX build byproducts
+logs/
+*.aux
+*.blg
+*.fls
+*.fdb_latexmk
+*.lof
+*.lot
+*.out
+*.synctex.gz
+*.toc
+*.log
+texput.log

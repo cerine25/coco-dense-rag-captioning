@@ -1,0 +1,48 @@
+# G1 pipeline configuration (settings are defined here rather than hard-coded in scripts).
+seed: 42
+release_version: "g1-v1.1"
+
+paths:
+  raw: data/raw                 # Raw COCO annotations and images.
+  artifacts: artifacts          # All generated files (the frozen release).
+
+sizes:                          # Split sizes (see project specification §4.2).
+  kb: 10000                     # COCO train2017, RAG knowledge base.
+  val: 100                      # COCO train2017, disjoint from the KB; used for tuning.
+  test: 100                     # COCO val2017, final evaluation (100 images, per §§4.1-4.2).
+
+captions_per_image: 5           # Keep the first five captions by caption_id when more are available.
+
+sampling:
+  min_objects: 1                # Exclude images without annotations (metadata cannot be generated).
+  min_side_px: 200
+  kb_min_images_per_category: 60   # Minimum KB coverage for each of the 80 classes.
+  # Stratified target distribution for val and test, from simple to crowded scenes.
+  eval_complexity_target: {simple: 0.25, medium: 0.30, complex: 0.30, crowded: 0.15}
+  eval_min_interaction_frac: 0.30  # At least 30% of images contain an interaction (person+object, animal+object, etc.).
+  eval_min_context_frac: 0.20      # Each context (indoor/outdoor) should be >= 20%, when possible.
+
+image:
+  max_side: 512                 # Normalized RGB copy preserving aspect ratio; the encoder resizes separately.
+  jpeg_quality: 95
+  dhash_size: 8
+  near_dup_hamming: 4           # Near-duplicate threshold (64-bit dHash).
+  night_brightness_thr: 0.28    # Mean brightness [0-1] below which an image is labeled night/dark.
+
+detector:                       # Optional (03b): query metadata without ground-truth annotations.
+  model: facebook/detr-resnet-50
+  conf_threshold: 0.7
+
+encoders:
+  clip-b32:    {type: clip,   model: openai/clip-vit-base-patch32, batch: 64}
+  siglip-b16:  {type: siglip, model: google/siglip-base-patch16-224, batch: 64}
+  dinov2-s:    {type: dinov2, model: facebook/dinov2-small, batch: 64}
+primary_encoder: siglip-b16
+sbert_model: sentence-transformers/all-MiniLM-L6-v2
+
+index:
+  type: flat_ip                 # Exact search; cosine similarity via L2-normalized vectors and inner product.
+  hnsw: {M: 32, efConstruction: 200, efSearch: 64}   # Also indexed for documentation and latency comparisons.
+
+tuning:
+  top_k: [1, 3, 5, 10]

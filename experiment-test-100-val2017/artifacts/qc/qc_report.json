@@ -1,0 +1,218 @@
+{
+  "version": "g1-v1.1",
+  "passed": true,
+  "n_fail": 0,
+  "n_warn": 0,
+  "checks": [
+    {
+      "check": "KB split size",
+      "status": "PASS",
+      "detail": "10000 vs 10000"
+    },
+    {
+      "check": "KB ID hash = splits_meta",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "val split size",
+      "status": "PASS",
+      "detail": "100 vs 100"
+    },
+    {
+      "check": "val ID hash = splits_meta",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "test split size",
+      "status": "PASS",
+      "detail": "100 vs 100"
+    },
+    {
+      "check": "test ID hash = splits_meta",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "splits are pairwise disjoint",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "invalid images (corrupt/missing)",
+      "status": "PASS",
+      "detail": "0"
+    },
+    {
+      "check": "unique IDs in images.csv",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "exact duplicates (SHA-256) across/within splits",
+      "status": "PASS",
+      "detail": "0 images"
+    },
+    {
+      "check": "no NaNs in pixel statistics",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "KB: 5 captions per image",
+      "status": "PASS",
+      "detail": "min=5 max=5"
+    },
+    {
+      "check": "val: 5 references per image",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "test: 5 references per image",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "unique caption IDs (KB)",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "LEAKAGE CHECK: no val/test images in kb_captions",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "LEAKAGE CHECK: no evaluation caption IDs in the KB",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "raw captions unchanged (raw may differ from clean; raw is non-empty)",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "info: val references identical to a KB caption (text)",
+      "status": "PASS",
+      "detail": "1.0% — normal for generic captions; not image leakage"
+    },
+    {
+      "check": "info: test references identical to a KB caption (text)",
+      "status": "PASS",
+      "detail": "1.4% — normal for generic captions; not image leakage"
+    },
+    {
+      "check": "metadata available for every image",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "text attributes available only for the KB",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "embeddings clip-b32/kb",
+      "status": "PASS",
+      "detail": "shape=(10000, 512)"
+    },
+    {
+      "check": "embeddings clip-b32/val",
+      "status": "PASS",
+      "detail": "shape=(100, 512)"
+    },
+    {
+      "check": "embeddings clip-b32/test",
+      "status": "PASS",
+      "detail": "shape=(100, 512)"
+    },
+    {
+      "check": "clip-b32 index: ntotal=KB and self-retrieval",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "embeddings siglip-b16/kb",
+      "status": "PASS",
+      "detail": "shape=(10000, 768)"
+    },
+    {
+      "check": "embeddings siglip-b16/val",
+      "status": "PASS",
+      "detail": "shape=(100, 768)"
+    },
+    {
+      "check": "embeddings siglip-b16/test",
+      "status": "PASS",
+      "detail": "shape=(100, 768)"
+    },
+    {
+      "check": "siglip-b16 index: ntotal=KB and self-retrieval",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "embeddings dinov2-s/kb",
+      "status": "PASS",
+      "detail": "shape=(10000, 384)"
+    },
+    {
+      "check": "embeddings dinov2-s/val",
+      "status": "PASS",
+      "detail": "shape=(100, 384)"
+    },
+    {
+      "check": "embeddings dinov2-s/test",
+      "status": "PASS",
+      "detail": "shape=(100, 384)"
+    },
+    {
+      "check": "dinov2-s index: ntotal=KB and self-retrieval",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "LEAKAGE CHECK: val never retrieves itself (k=10)",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "info: val near-duplicates in the KB",
+      "status": "PASS",
+      "detail": "cos>=0.97: 0/100 | dHash<=4: 0"
+    },
+    {
+      "check": "LEAKAGE CHECK: test never retrieves itself (k=10)",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "info: test near-duplicates in the KB",
+      "status": "PASS",
+      "detail": "cos>=0.97: 0/100 | dHash<=4: 0"
+    },
+    {
+      "check": "smoke test val: NN-caption CIDEr > random",
+      "status": "PASS",
+      "detail": "NN=0.674 random=0.024 | Jaccard classes@1=0.546",
+      "metrics": {
+        "cider_nn": 0.6735370593982103,
+        "cider_random": 0.02375858959256384,
+        "jaccard_cls_top1": 0.5455438596491229
+      }
+    },
+    {
+      "check": "smoke test test: NN-caption CIDEr > random",
+      "status": "PASS",
+      "detail": "NN=0.622 random=0.033 | Jaccard classes@1=0.506",
+      "metrics": {
+        "cider_nn": 0.6215852804385507,
+        "cider_random": 0.03313560997424678,
+        "jaccard_cls_top1": 0.5057160894660896
+      }
+    }
+  ]
+}

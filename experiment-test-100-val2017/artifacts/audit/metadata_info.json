@@ -1,0 +1,30 @@
+{
+  "object_source": "COCO instance annotations (GT). WARNING: these objects are an ORACLE for val/test queries; use 03b_detect_objects.py (DETR) for 'realistic' metadata.",
+  "attribute_lexicon_sizes": {
+    "color": 17,
+    "material": 8,
+    "size": 10,
+    "state": 13
+  },
+  "relations_geometry": [
+    "inside",
+    "contains",
+    "on_top_of",
+    "overlapping",
+    "left_of",
+    "right_of",
+    "above",
+    "below"
+  ],
+  "relation_counts": {
+    "overlapping": 27040,
+    "on_top_of": 5156,
+    "above": 27269,
+    "left_of": 74935,
+    "inside": 12512,
+    "right_of": 74935,
+    "contains": 12512,
+    "below": 27269
+  },
+  "caption_selection": "5 first captions by caption_id (COCO sometimes has 6-7)"
+}
